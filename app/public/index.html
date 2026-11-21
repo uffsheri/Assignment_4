@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Loan EMI Calculator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body class="bg-light">
+<div class="container py-4" style="max-width: 800px;">
+  <h2 class="mb-4">Loan EMI Calculator</h2>
+
+  <form id="emiForm" class="card card-body mb-4" novalidate>
+    <div class="mb-3">
+      <label class="form-label" for="principal">Loan amount (P)</label>
+      <input type="number" class="form-control" id="principal" min="1" step="any" value="500000" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="rate">Annual interest rate (%)</label>
+      <input type="number" class="form-control" id="rate" min="0.01" step="any" value="12" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="months">Tenure (months)</label>
+      <input type="number" class="form-control" id="months" min="1" step="1" value="24" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Calculate</button>
+    <div id="formError" class="text-danger mt-2"></div>
+  </form>
+
+  <div id="resultPanel" class="card card-body mb-4 d-none">
+    <h5>Result</h5>
+    <p class="mb-1"><strong>Monthly EMI:</strong> <span id="rEmi"></span></p>
+    <p class="mb-1"><strong>Total payment:</strong> <span id="rTotal"></span></p>
+    <p class="mb-1"><strong>Total interest:</strong> <span id="rInterest"></span></p>
+    <p class="mb-0 text-muted small">Served by pod <span id="rPod"></span> (<span id="rIp"></span>)</p>
+  </div>
+
+  <h5>Last 10 calculations</h5>
+  <table class="table table-sm table-striped bg-white">
+    <thead>
+      <tr><th>Time</th><th>Principal</th><th>Rate %</th><th>Months</th><th>EMI</th><th>Served by</th></tr>
+    </thead>
+    <tbody id="historyBody"></tbody>
+  </table>
+</div>
+
+<script>
+function fmt(x) { return Number(x).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}); }
+
+function loadHistory() {
+  $.getJSON('/api/history', function (rows) {
+    var html = '';
+    rows.forEach(function (r) {
+      html += '<tr><td>' + new Date(r.createdAt).toLocaleString() + '</td><td>' + fmt(r.principal) +
+              '</td><td>' + r.rate + '</td><td>' + r.months + '</td><td>' + fmt(r.emi) +
+              '</td><td>' + $('<div>').text(r.servedBy).html() + '</td></tr>';
+    });
+    $('#historyBody').html(html);
+  });
+}
+
+$('#emiForm').on('submit', function (e) {
+  e.preventDefault();                       // no postback
+  var P = parseFloat($('#principal').val());
+  var rate = parseFloat($('#rate').val());
+  var n = parseInt($('#months').val(), 10);
+
+  // client-side validation
+  if (!(P > 0) || !(rate > 0) || !(n > 0)) {
+    $('#formError').text('All values must be positive numbers.');
+    return;
+  }
+  $('#formError').text('');
+
+  $.ajax({
+    url: '/api/emi', method: 'POST', contentType: 'application/json',
+    data: JSON.stringify({ principal: P, rate: rate, months: n }),
+    success: function (d) {
+      $('#rEmi').text(fmt(d.emi));
+      $('#rTotal').text(fmt(d.totalPayment));
+      $('#rInterest').text(fmt(d.totalInterest));
+      $('#rPod').text(d.pod.name);
+      $('#rIp').text(d.pod.ip);
+      $('#resultPanel').removeClass('d-none');
+      loadHistory();
+    },
+    error: function (xhr) {
+      $('#formError').text((xhr.responseJSON && xhr.responseJSON.error) || 'Request failed');
+    }
+  });
+});
+
+loadHistory();
+</script>
+</body>
+</html>
