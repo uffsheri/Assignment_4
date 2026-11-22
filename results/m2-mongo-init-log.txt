@@ -1,0 +1,10 @@
+mongo-0.mongo is up
+mongo-1.mongo is up
+mongo-2.mongo is up
+{
+  ok: 1
+}
+waiting for a PRIMARY ...
+mongo-0.mongo:27017 SECONDARY
+mongo-1.mongo:27017 PRIMARY
+mongo-2.mongo:27017 SECONDARY

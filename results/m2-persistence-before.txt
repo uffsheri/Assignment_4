@@ -1,0 +1,6 @@
+=== BEFORE ===
+NAME      READY   STATUS    RESTARTS   AGE
+mongo-1   1/1     Running   0          25m
+NAME           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+data-mongo-1   Bound    pvc-7eca4610-481b-4198-92a4-b39a71643986   1Gi        RWO            standard       <unset>                 25m
+documents: 8
