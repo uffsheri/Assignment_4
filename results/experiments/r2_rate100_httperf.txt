@@ -1,3 +1,30 @@
 httperf: warning: open file limit > FD_SETSIZE; limiting max. # of open files to FD_SETSIZE
-httperf: too many sessions (1001) specified in /tmp/emi-sessions/r2_rate100.txt
 httperf --hog --timeout=5 --client=0/1 --server=emi.local --port=80 --uri=/ --rate=100 --send-buffer=4096 --recv-buffer=16384 --add-header='Content-Type: application/json\n' --wsesslog=6000,0.000,/tmp/emi-sessions/r2_rate100.txt
+Maximum connect burst length: 1
+
+Total: connections 6000 requests 6000 replies 6000 test-duration 59.996 s
+
+Connection rate: 100.0 conn/s (10.0 ms/conn, <=7 concurrent connections)
+Connection time [ms]: min 4.1 avg 6.5 max 104.6 median 5.5 stddev 4.6
+Connection time [ms]: connect 0.0
+Connection length [replies/conn]: 1.000
+
+Request rate: 100.0 req/s (10.0 ms/req)
+Request size [B]: 167.0
+
+Reply rate [replies/s]: min 99.8 avg 100.0 max 100.2 stddev 0.1 (11 samples)
+Reply time [ms]: response 6.5 transfer 0.0
+Reply size [B]: header 213.0 content 129.0 footer 0.0 (total 342.0)
+Reply status: 1xx=0 2xx=6000 3xx=0 4xx=0 5xx=0
+
+CPU time [s]: user 22.54 system 37.32 (user 37.6% system 62.2% total 99.8%)
+Net I/O: 49.8 KB/s (0.4*10^6 bps)
+
+Errors: total 0 client-timo 0 socket-timo 0 connrefused 0 connreset 0
+Errors: fd-unavail 0 addrunavail 0 ftab-full 0 other 0
+
+Session rate [sess/s]: min 99.81 avg 100.01 max 100.21 stddev 0.14 (6000/6000)
+Session: avg 1.00 connections/session
+Session lifetime [s]: 0.0
+Session failtime [s]: 0.0
+Session length histogram: 0 6000

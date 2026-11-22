@@ -3,7 +3,7 @@
 usage: gen_sessions.py <count> <outfile> [seed]"""
 import json, random, sys
 
-count = int(sys.argv[1])
+count = min(int(sys.argv[1]), 1000)   # httperf allows max 1000 sessions per file and reuses them
 out = sys.argv[2]
 rnd = random.Random(int(sys.argv[3])) if len(sys.argv) > 3 else random.Random()
 
