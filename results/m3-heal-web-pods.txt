@@ -1,0 +1,8 @@
+10:18:08 NAME                       READY   STATUS      RESTARTS   AGE
+10:18:08 emi-web-7fdd55f9b4-9g656   1/1     Running     0          11m
+10:18:08 emi-web-7fdd55f9b4-d5llq   1/1     Running     0          11m
+10:18:08 emi-web-7fdd55f9b4-swng6   1/1     Running     0          11m
+10:18:08 mongo-0                    1/1     Running     0          69m
+10:18:08 mongo-1                    1/1     Running     0          41m
+10:18:08 mongo-2                    1/1     Running     0          68m
+10:18:08 mongo-init-dp65c           0/1     Completed   0          66m

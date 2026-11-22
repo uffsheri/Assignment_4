@@ -1,0 +1,6 @@
+deployment.apps/emi-web 
+REVISION  CHANGE-CAUSE
+1         <none>
+2         update to emi-web:1.1
+3         update to emi-web:1.1
+

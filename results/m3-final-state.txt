@@ -1,0 +1,29 @@
+NAME                           READY   STATUS      RESTARTS   AGE     IP            NODE       NOMINATED NODE   READINESS GATES
+pod/emi-web-7fdd55f9b4-c2gln   1/1     Running     0          2m29s   10.244.0.24   minikube   <none>           <none>
+pod/emi-web-7fdd55f9b4-v697g   1/1     Running     0          2m23s   10.244.0.25   minikube   <none>           <none>
+pod/emi-web-7fdd55f9b4-xzggt   1/1     Running     0          2m35s   10.244.0.23   minikube   <none>           <none>
+pod/mongo-0                    1/1     Running     0          21m     10.244.0.19   minikube   <none>           <none>
+pod/mongo-1                    1/1     Running     0          68m     10.244.0.10   minikube   <none>           <none>
+pod/mongo-2                    1/1     Running     0          95m     10.244.0.5    minikube   <none>           <none>
+pod/mongo-init-dp65c           0/1     Completed   0          94m     10.244.0.6    minikube   <none>           <none>
+
+NAME              TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)     AGE   SELECTOR
+service/emi-web   ClusterIP   10.107.169.110   <none>        80/TCP      83m   app=emi-web
+service/mongo     ClusterIP   None             <none>        27017/TCP   96m   app=mongo
+
+NAME                      READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES        SELECTOR
+deployment.apps/emi-web   3/3     3            3           83m   emi-web      emi-web:1.0   app=emi-web
+
+NAME                                 DESIRED   CURRENT   READY   AGE     CONTAINERS   IMAGES        SELECTOR
+replicaset.apps/emi-web-6fb99699b9   0         0         0       83m     emi-web      emi-web:1.0   app=emi-web,pod-template-hash=6fb99699b9
+replicaset.apps/emi-web-7fdd55f9b4   3         3         3       39m     emi-web      emi-web:1.0   app=emi-web,pod-template-hash=7fdd55f9b4
+replicaset.apps/emi-web-84b97dff45   0         0         0       7m36s   emi-web      emi-web:1.1   app=emi-web,pod-template-hash=84b97dff45
+
+NAME                     READY   AGE   CONTAINERS   IMAGES
+statefulset.apps/mongo   3/3     96m   mongo        mongo:7
+
+NAME                   STATUS     COMPLETIONS   DURATION   AGE   CONTAINERS   IMAGES    SELECTOR
+job.batch/mongo-init   Complete   1/1           18s        94m   init         mongo:7   batch.kubernetes.io/controller-uid=4fb50008-f902-4926-aaca-692aa7595b1c
+
+NAME                                CLASS   HOSTS       ADDRESS        PORTS   AGE
+ingress.networking.k8s.io/emi-web   nginx   emi.local   192.168.49.2   80      49m

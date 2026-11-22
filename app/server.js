@@ -92,4 +92,13 @@ app.get('/health', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => console.log(`EMI app listening on ${PORT}, pod=${POD_NAME}`));
+const server = app.listen(PORT, () => console.log(`EMI app listening on ${PORT}, pod=${POD_NAME}`));
+
+process.on('SIGTERM', () => {
+  console.log('SIGTERM received, shutting down');
+  server.close(async () => {
+    await client.close();
+    process.exit(0);
+  });
+  setTimeout(() => process.exit(0), 8000).unref();
+});
