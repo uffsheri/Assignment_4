@@ -1,0 +1,2 @@
+emi-web-7fdd55f9b4-c2gln   1/1   Running   0     49m
+emi-web-7fdd55f9b4-sjl5x   1/1   Running   0     7s

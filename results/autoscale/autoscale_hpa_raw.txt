@@ -1,0 +1,3 @@
+[2026-11-22 11:46:00]
+NAME      REFERENCE            TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+emi-web   Deployment/emi-web   cpu: 5%/50%   1         5         1          30s

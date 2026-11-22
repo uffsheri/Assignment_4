@@ -1,0 +1,12 @@
+=== Reset: single replica, fresh HPA
+deployment.apps/emi-web scaled
+deployment "emi-web" successfully rolled out
+horizontalpodautoscaler.autoscaling/emi-web created
+NAME      REFERENCE            TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+emi-web   Deployment/emi-web   cpu: 4%/50%   1         5         1          30s
+>>> 11:46:02 phase 1: 10 req/s for 120 s
+>>> 11:46:02 phase 2: 100 req/s for 300 s
+>>> 11:46:02 phase 3: 10 req/s for 180 s
+=== Finished. Final HPA state:
+NAME      REFERENCE            TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+emi-web   Deployment/emi-web   cpu: 5%/50%   1         5         1          38s

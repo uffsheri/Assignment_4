@@ -1,0 +1,2 @@
+timestamp,avg_cpu_utilization_percent,target_percent,current_replicas,desired_replicas
+2026-11-22 11:46:00,5,50,1,1

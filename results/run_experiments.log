@@ -1,0 +1,68 @@
+=== Scaling emi-web to 1 replica(s)
+deployment.apps/emi-web scaled
+deployment "emi-web" successfully rolled out
+emi-web-7fdd55f9b4-c2gln   1/1   Running       0     45m
+emi-web-7fdd55f9b4-v697g   1/1   Terminating   0     45m
+emi-web-7fdd55f9b4-xzggt   1/1   Terminating   0     45m
+>>> 11:28:32  replicas=1  rate=10 req/s  (600 requests)
+1,10,600,600,8.7,0,0,0,10.0,59.907
+>>> 11:30:07  replicas=1  rate=25 req/s  (1500 requests)
+1,25,,,,0,0,0,,
+>>> 11:30:43  replicas=1  rate=50 req/s  (3000 requests)
+1,50,,,,0,0,0,,
+>>> 11:31:18  replicas=1  rate=100 req/s  (6000 requests)
+1,100,,,,0,0,0,,
+>>> 11:31:53  replicas=1  rate=200 req/s  (12000 requests)
+1,200,,,,0,0,0,,
+=== Scaling emi-web to 2 replica(s)
+deployment.apps/emi-web scaled
+Waiting for deployment "emi-web" rollout to finish: 1 out of 2 new replicas have been updated...
+Waiting for deployment "emi-web" rollout to finish: 1 of 2 updated replicas are available...
+deployment "emi-web" successfully rolled out
+emi-web-7fdd55f9b4-c2gln   1/1   Running   0     49m
+emi-web-7fdd55f9b4-sjl5x   1/1   Running   0     7s
+>>> 11:32:55  replicas=2  rate=10 req/s  (600 requests)
+2,10,600,600,72.3,0,0,0,10.0,59.913
+>>> 11:34:30  replicas=2  rate=25 req/s  (1500 requests)
+2,25,,,,0,0,0,,
+>>> 11:35:05  replicas=2  rate=50 req/s  (3000 requests)
+2,50,,,,0,0,0,,
+>>> 11:35:40  replicas=2  rate=100 req/s  (6000 requests)
+2,100,,,,0,0,0,,
+>>> 11:36:16  replicas=2  rate=200 req/s  (12000 requests)
+2,200,,,,0,0,0,,
+=== Scaling emi-web to 3 replica(s)
+deployment.apps/emi-web scaled
+Waiting for deployment "emi-web" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "emi-web" rollout to finish: 2 of 3 updated replicas are available...
+deployment "emi-web" successfully rolled out
+emi-web-7fdd55f9b4-c2gln   1/1   Running   0     54m
+emi-web-7fdd55f9b4-m7dnz   1/1   Running   0     7s
+emi-web-7fdd55f9b4-sjl5x   1/1   Running   0     4m30s
+>>> 11:37:19  replicas=3  rate=10 req/s  (600 requests)
+3,10,600,600,8.5,0,0,0,10.0,59.906
+>>> 11:38:54  replicas=3  rate=25 req/s  (1500 requests)
+3,25,,,,0,0,0,,
+>>> 11:39:29  replicas=3  rate=50 req/s  (3000 requests)
+3,50,,,,0,0,0,,
+>>> 11:40:04  replicas=3  rate=100 req/s  (6000 requests)
+3,100,,,,0,0,0,,
+>>> 11:40:39  replicas=3  rate=200 req/s  (12000 requests)
+3,200,,,,0,0,0,,
+=== Done. Summary:
+replicas,target_rate,requests_sent,replies,avg_response_ms,errors_total,http_4xx,http_5xx,avg_reply_rate,duration_s
+1,10,600,600,8.7,0,0,0,10.0,59.907
+1,25,,,,0,0,0,,
+1,50,,,,0,0,0,,
+1,100,,,,0,0,0,,
+1,200,,,,0,0,0,,
+2,10,600,600,72.3,0,0,0,10.0,59.913
+2,25,,,,0,0,0,,
+2,50,,,,0,0,0,,
+2,100,,,,0,0,0,,
+2,200,,,,0,0,0,,
+3,10,600,600,8.5,0,0,0,10.0,59.906
+3,25,,,,0,0,0,,
+3,50,,,,0,0,0,,
+3,100,,,,0,0,0,,
+3,200,,,,0,0,0,,
